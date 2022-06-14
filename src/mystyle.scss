@@ -28,7 +28,6 @@
     flex-direction: row;
     padding: 5rem 10rem;
     color: #161616;
-
     h1 {
         font-size: 38px;
         margin: 0.5rem;
@@ -64,6 +63,11 @@
 
     img {
         width: 50%;
+    }
+
+    .rigth {
+        display: flex;
+        justify-content: flex-end;
     }
 }
 

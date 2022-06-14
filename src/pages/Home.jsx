@@ -1,4 +1,5 @@
 import React from "react";
+import photo from "../components/callme.png";
 
 const Home = () => {
   return (
@@ -14,6 +15,9 @@ const Home = () => {
             My name is <strong>Liliana Gallegos </strong>and I'm a frontend dev
           </p>
           <a href="mailto:lily.gallegos@hotmail.com?">Contact me ;)</a>
+        </div>
+        <div className="rigth">
+          <img src={photo} />
         </div>
       </div>
       <div className="waves">
@@ -42,4 +46,3 @@ const Home = () => {
 };
 
 export default Home;
-
