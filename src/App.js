@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Navbar from "./components/navbar";
 import Employees from "./pages/Employees";
-import Upload from "./pages/Upload";
+import UploadPage from "./pages/UploadPage";
 import Home from "./pages/Home";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/employees" element={<Employees />} />
-        <Route path="/upload" element={<Upload />} />
+        <Route path="/upload" element={<UploadPage />} />
       </Routes>
     </div>
   );

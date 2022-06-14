@@ -28,6 +28,7 @@
     flex-direction: row;
     padding: 5rem 10rem;
     color: #161616;
+
     h1 {
         font-size: 38px;
         margin: 0.5rem;
@@ -82,4 +83,24 @@
 
 .logo {
     width: 70px;
+}
+
+.draggerPage {
+    display: flex;
+    flex-direction: row;
+    padding: 5rem 10rem;
+    color: #161616;
+    justify-content: center;
+}
+
+.ant-upload.ant-upload-drag .ant-upload-btn {
+    display: table;
+    height: 100px !important;
+}
+
+.ant-upload.ant-upload-drag {
+    height: 200px !important;
+    background: #ffffff;
+    border: 1px dashed #d9d9d9;
+    padding: 1rem;
 }
