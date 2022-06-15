@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table, Row, Col, Modal } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { rdxuploadsactions } from "../reducers/upload";
 import Highlighter from "react-highlight-words";
 import FormModal from "../components/FormModal";
 
@@ -79,10 +81,14 @@ const Employees = () => {
       date: "1982/09/06",
     },
   ];*/
+  //dispatch
+  const dispatch = useDispatch();
+  //states
   const [data, setData] = useState("");
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
+  let modalVisible = useSelector((state) => state.uploadReducer.modalEmployee);
   const searchInput = useRef(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -94,6 +100,14 @@ const Employees = () => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
+  };
+
+  function onCancel() {
+    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: false }));
+  }
+
+  const onModalVisible = () => {
+    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: true }));
   };
 
   var requestOptions = {
@@ -231,10 +245,7 @@ const Employees = () => {
       <div className="employeesPage">
         <div className="employees-top">
           <h1>Employees</h1>
-          <button
-            className="buttonUpload"
-            onClick={() => setIsModalVisible(true)}
-          >
+          <button className="buttonUpload" onClick={onModalVisible}>
             Add Employee
           </button>
         </div>
@@ -252,8 +263,8 @@ const Employees = () => {
       </div>
       <Modal
         title="Add New Employee"
-        visible={isModalVisible}
-        onCancel={() => setIsModalVisible(false)}
+        visible={modalVisible}
+        onCancel={onCancel}
         className="modalStyle"
         maskClosable={false}
         destroyOnClose={true}

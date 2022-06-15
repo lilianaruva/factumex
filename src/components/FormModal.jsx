@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Form, Row, Col, Input, DatePicker } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { rdxuploadsactions } from "../reducers/upload";
 
 const FormModal = () => {
+  //dispatch
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [userName, setUserName] = useState(true);
 
-  const onFinish = (values) => {};
+  const onFinish = (values) => {
+    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: false }));
+  };
 
   function onChangeStarting(value, dateString) {
     console.log(dateString);
