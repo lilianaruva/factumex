@@ -1,8 +1,13 @@
 import React, { useState, useRef } from "react";
-import { Form, Input, Button, Layout, Row, Col, Card } from "antd";
+import { Form, Input, Button, Layout, Row, Col, Card, message } from "antd";
+import { useDispatch } from "react-redux";
+import { rdxuploadsactions } from "../reducers/upload";
 const { Content } = Layout;
 
 const Login = () => {
+  //dispatch
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -20,9 +25,9 @@ const Login = () => {
   };
 
   const submitHandler = async () => {
-    console.log(emailRef.current.input.value);
-    console.log(passwordRef.current.input.value);
     setLoading(true);
+    dispatch(rdxuploadsactions.changeLogState({ userLog: true }));
+    message.success("Welcome " + emailRef.current.input.value);
   };
 
   return (
@@ -55,6 +60,14 @@ const Login = () => {
                       ]}
                     >
                       <Input
+                        onPaste={(e) => {
+                          e.preventDefault();
+                          return false;
+                        }}
+                        onCopy={(e) => {
+                          e.preventDefault();
+                          return false;
+                        }}
                         type="email"
                         name="email"
                         ref={emailRef}
@@ -73,6 +86,14 @@ const Login = () => {
                       ]}
                     >
                       <Input
+                        onPaste={(e) => {
+                          e.preventDefault();
+                          return false;
+                        }}
+                        onCopy={(e) => {
+                          e.preventDefault();
+                          return false;
+                        }}
                         type="password"
                         name="password"
                         ref={passwordRef}

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   photos: [],
   modalEmployee: false,
+  userLog: false,
 };
 
 export const counterSlice = createSlice({
@@ -17,6 +18,9 @@ export const counterSlice = createSlice({
     },
     changeModalState: (state, action) => {
       state.modalEmployee = action.payload.modalEmployee;
+    },
+    changeLogState: (state, action) => {
+      state.userLog = action.payload.userLog;
     },
   },
 });
