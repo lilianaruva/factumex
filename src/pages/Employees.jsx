@@ -227,16 +227,16 @@ const Employees = () => {
     },
     {
       title: "Lastname",
-      dataIndex: "lastname",
-      key: "lastname",
+      dataIndex: "last_name",
+      key: "last_name",
       width: "33.33%",
-      ...getColumnSearchProps("lastname"),
+      ...getColumnSearchProps("last_name"),
     },
     {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      ...getColumnSearchProps("date"),
+      title: "Birthday",
+      dataIndex: "birthday",
+      key: "birthday",
+      ...getColumnSearchProps("birthday"),
     },
   ];
 
