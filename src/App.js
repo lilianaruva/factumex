@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "antd/dist/antd.css";
 import "./App.css";
 import "./mystyle.scss";
@@ -8,8 +7,7 @@ import Navbar from "./components/navbar";
 import Employees from "./pages/Employees";
 import UploadPage from "./pages/UploadPage";
 import Home from "./pages/Home";
-import { useDispatch, useSelector } from "react-redux";
-import { rdxuploadsactions } from "./reducers/upload";
+import { useSelector } from "react-redux";
 
 function App() {
   let isLog = useSelector((state) => state.uploadReducer.userLog);

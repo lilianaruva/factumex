@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Row, Col, Input, DatePicker } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { rdxuploadsactions } from "../reducers/upload";
 
 const FormModal = () => {
