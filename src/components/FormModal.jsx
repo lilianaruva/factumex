@@ -10,11 +10,35 @@ const FormModal = () => {
   const [userName, setUserName] = useState(true);
 
   const onFinish = (values) => {
-    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: false }));
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("name", "Liliana");
+    urlencoded.append("last_name", "Gallegos");
+    urlencoded.append("birthday", "1997/01/29");
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/liliana_gallegos",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        dispatch(rdxuploadsactions.changeModalState({ modalEmployee: false }));
+      })
+      .catch((error) => console.log("error", error));
   };
 
   function onChangeStarting(value, dateString) {
-    console.log(dateString);
+    //console.log(dateString);
   }
 
   return (
@@ -33,9 +57,18 @@ const FormModal = () => {
                       required: true,
                       message: "Please input your first name!",
                     },
+                    {
+                      max: 30,
+                      message: "Limit characters to 30 characters",
+                    },
                   ]}
+                  fs
                 >
-                  <Input size="large" className="fill-width"></Input>
+                  <Input
+                    size="large"
+                    className="fill-width"
+                    maxLength={30}
+                  ></Input>
                 </Form.Item>
               </Col>
               <Col xs={24} md={24} className="input-space">
@@ -44,10 +77,21 @@ const FormModal = () => {
                   name="lastName"
                   style={{ marginBottom: "1rem" }}
                   rules={[
-                    { required: true, message: "Please input your last name!" },
+                    {
+                      required: true,
+                      message: "Please input your last name!",
+                    },
+                    {
+                      max: 30,
+                      message: "Limit characters to 30 characters",
+                    },
                   ]}
                 >
-                  <Input size="large" className="fill-width"></Input>
+                  <Input
+                    size="large"
+                    className="fill-width"
+                    maxLength={30}
+                  ></Input>
                 </Form.Item>
               </Col>
               <Col xs={24} md={24}>
