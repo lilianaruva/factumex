@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
-import { Upload, Col, Row } from "antd";
+import { Upload, Col, Row, List, Image } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { rdxuploadsactions } from "../reducers/upload";
 const { Dragger } = Upload;
 
 const UploadPage = () => {
+  let showPhotos = useSelector((state) => state.uploadReducer.photos);
   const [fileList, setFileList] = useState([]);
+  //dispatch
+  const dispatch = useDispatch();
 
   const props = {
     name: "file",
     multiple: true,
     accept: ".png,.jpeg,.jpg",
     listType: "picture",
+
+    beforeUpload() {
+      return false;
+    },
 
     onChange({ fileList: newFileList }) {
       setFileList(newFileList);
@@ -22,7 +31,9 @@ const UploadPage = () => {
   };
 
   const Save = () => {
-    console.log("save");
+    fileList?.map((file) => {
+      dispatch(rdxuploadsactions.addPhoto({ photos: file }));
+    });
   };
 
   return (
@@ -47,8 +58,22 @@ const UploadPage = () => {
         <button className="buttonUpload" onClick={Save}>
           Save
         </button>
+
+        <Row>
+          <List
+            grid={{
+              gutter: 16,
+              column: 3,
+            }}
+            dataSource={showPhotos}
+            renderItem={(item) => (
+              <List.Item>
+                <Image width={200} src={item?.thumbUrl} alt={item?.uid} />
+              </List.Item>
+            )}
+          />
+        </Row>
       </div>
-      <Row></Row>
     </>
   );
 };

@@ -98,6 +98,7 @@
 
     .buttonUpload {
         margin-top: 2rem;
+        margin-bottom: 2rem;
         max-width: 100px;
         height: 40px;
         background: #eb2f96;
@@ -106,7 +107,7 @@
         border-radius: 5px;
         border: none;
 
-        &:hover{
+        &:hover {
             background: #eb2f96a5;
             cursor: pointer;
         }
