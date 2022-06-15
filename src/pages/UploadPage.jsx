@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
-import { message, Upload, Col, Row } from "antd";
+import { Upload, Col, Row } from "antd";
 const { Dragger } = Upload;
 
-const props = {
-  name: "file",
-  multiple: true,
-  accept: ".png,.jpeg,.jpg",
-  listType: "picture",
-  beforeUpload(file) {
-    console.log(file);
-    return false;
-  },
-
-  onChange(info) {},
-
-  onDrop(e) {
-    console.log("Dropped files");
-  },
-};
-
 const UploadPage = () => {
+  const [fileList, setFileList] = useState([]);
+
+  const props = {
+    name: "file",
+    multiple: true,
+    accept: ".png,.jpeg,.jpg",
+    listType: "picture",
+
+    onChange({ fileList: newFileList }) {
+      setFileList(newFileList);
+    },
+
+    onDrop(e) {
+      console.log("Dropped files");
+    },
+  };
+
+  const Save = () => {
+    console.log("save");
+  };
+
   return (
     <>
       <div className="draggerPage">
@@ -40,6 +44,9 @@ const UploadPage = () => {
             </Dragger>
           </Col>
         </Row>
+        <button className="buttonUpload" onClick={Save}>
+          Save
+        </button>
       </div>
       <Row></Row>
     </>
