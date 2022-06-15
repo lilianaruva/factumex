@@ -7,16 +7,16 @@ const FormModal = () => {
   //dispatch
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const [userName, setUserName] = useState(true);
+  const [date, setDate] = useState(true);
 
   const onFinish = (values) => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
     var urlencoded = new URLSearchParams();
-    urlencoded.append("name", "Liliana");
-    urlencoded.append("last_name", "Gallegos");
-    urlencoded.append("birthday", "1997/01/29");
+    urlencoded.append("name", values.firstName);
+    urlencoded.append("last_name", values.lastName);
+    urlencoded.append("birthday", date);
 
     var requestOptions = {
       method: "POST",
@@ -38,7 +38,7 @@ const FormModal = () => {
   };
 
   function onChangeStarting(value, dateString) {
-    //console.log(dateString);
+    setDate(dateString);
   }
 
   return (
