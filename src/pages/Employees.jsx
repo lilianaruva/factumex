@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { rdxuploadsactions } from "../reducers/upload";
 import Highlighter from "react-highlight-words";
 import FormModal from "../components/FormModal";
+import moment from "moment";
 
 const Employees = () => {
   /*const data = [
@@ -87,7 +88,6 @@ const Employees = () => {
   const [data, setData] = useState("");
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
   let modalVisible = useSelector((state) => state.uploadReducer.modalEmployee);
   const searchInput = useRef(null);
 
@@ -96,14 +96,22 @@ const Employees = () => {
     redirect: "follow",
   };
 
-  useEffect(() => {
+  const request = () => {
     fetch(
       "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/liliana_gallegos",
       requestOptions
     )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => response.json())
+      .then((result) => setData(result.data.employees))
       .catch((error) => console.log("error", error));
+  };
+
+  useEffect(() => {
+    request();
+  }, [modalVisible]);
+
+  useEffect(() => {
+    request();
   }, []);
 
   function onCancel() {
@@ -236,7 +244,11 @@ const Employees = () => {
       title: "Birthday",
       dataIndex: "birthday",
       key: "birthday",
-      ...getColumnSearchProps("birthday"),
+      render: (birthday) => {
+        var time = birthday;
+        var date = new Date(time);
+        return <p>{moment(date).format("YYYY/MM/DD")}</p>;
+      },
     },
   ];
 
