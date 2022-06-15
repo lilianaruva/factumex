@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table, Row, Col } from "antd";
+import { Button, Input, Space, Table, Row, Col, Modal } from "antd";
 import Highlighter from "react-highlight-words";
+import FormModal from "../components/FormModal";
 
 const Employees = () => {
   const data = [
@@ -80,6 +81,7 @@ const Employees = () => {
   ];
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const searchInput = useRef(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -213,7 +215,12 @@ const Employees = () => {
       <div className="employeesPage">
         <div className="employees-top">
           <h1>Employees</h1>
-          <button className="buttonUpload">Add Employee</button>
+          <button
+            className="buttonUpload"
+            onClick={() => setIsModalVisible(true)}
+          >
+            Add Employee
+          </button>
         </div>
         <Row>
           <Col span={24}>
@@ -227,6 +234,17 @@ const Employees = () => {
           </Col>
         </Row>
       </div>
+      <Modal
+        title="Add New Employee"
+        visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        className="modalStyle"
+        maskClosable={false}
+        destroyOnClose={true}
+        footer={null}
+      >
+        <FormModal />
+      </Modal>
     </>
   );
 };
