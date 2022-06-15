@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table, Row, Col, Modal } from "antd";
 import Highlighter from "react-highlight-words";
 import FormModal from "../components/FormModal";
 
 const Employees = () => {
-  const data = [
+  /*const data = [
     {
       key: "31",
       name: "John",
@@ -78,7 +78,8 @@ const Employees = () => {
       lastname: "Red",
       date: "1982/09/06",
     },
-  ];
+  ];*/
+  const [data, setData] = useState("");
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -94,6 +95,21 @@ const Employees = () => {
     clearFilters();
     setSearchText("");
   };
+
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  useEffect(() => {
+    fetch(
+      "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/liliana_gallegos",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }, []);
 
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
