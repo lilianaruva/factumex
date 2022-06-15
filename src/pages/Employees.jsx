@@ -10,73 +10,73 @@ const Employees = () => {
       key: "31",
       name: "John",
       lastname: "Brown",
-      date: "New York No. 1 Lake Park",
+      date: "1998/10/15",
     },
     {
       key: "32",
       name: "Joe",
       lastname: "Black",
-      date: "London No. 1 Lake Park",
+      date: "1997/01/05",
     },
     {
       key: "33",
       name: "Jim",
       lastname: "Green",
-      date: "Sidney No. 1 Lake Park",
+      date: "1985/12/25",
     },
     {
       key: "34",
       name: "Jim",
       lastname: "Red",
-      date: "London No. 2 Lake Park",
+      date: "1982/09/06",
     },
     {
       key: "21",
       name: "John",
       lastname: "Brown",
-      date: "New York No. 1 Lake Park",
+      date: "1998/10/15",
     },
     {
       key: "22",
       name: "Joe",
       lastname: "Black",
-      date: "London No. 1 Lake Park",
+      date: "1997/01/05",
     },
     {
       key: "23",
       name: "Jim",
       lastname: "Green",
-      date: "Sidney No. 1 Lake Park",
+      date: "1985/12/25",
     },
     {
       key: "24",
       name: "Jim",
       lastname: "Red",
-      date: "London No. 2 Lake Park",
+      date: "1982/09/06",
     },
     {
       key: "11",
       name: "John",
       lastname: "Brown",
-      date: "New York No. 1 Lake Park",
+      date: "1998/10/15",
     },
     {
       key: "12",
       name: "Joe",
       lastname: "Black",
-      date: "London No. 1 Lake Park",
+      date: "1997/01/05",
     },
     {
       key: "13",
       name: "Jim",
       lastname: "Green",
-      date: "Sidney No. 1 Lake Park",
+      date: "1985/12/25",
     },
     {
       key: "14",
       name: "Jim",
       lastname: "Red",
-      date: "London No. 2 Lake Park",
+      date: "1982/09/06",
     },
   ];
   const [searchText, setSearchText] = useState("");
@@ -152,7 +152,7 @@ const Employees = () => {
               setSearchedColumn(dataIndex);
             }}
           >
-            Reset
+            Clean
           </Button>
         </Space>
       </div>
@@ -192,14 +192,14 @@ const Employees = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      width: "30%",
+      width: "33.33%",
       ...getColumnSearchProps("name"),
     },
     {
       title: "Lastname",
       dataIndex: "lastname",
       key: "lastname",
-      width: "20%",
+      width: "33.33%",
       ...getColumnSearchProps("lastname"),
     },
     {
