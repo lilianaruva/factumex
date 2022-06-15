@@ -91,25 +91,6 @@ const Employees = () => {
   let modalVisible = useSelector((state) => state.uploadReducer.modalEmployee);
   const searchInput = useRef(null);
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  };
-
-  const handleReset = (clearFilters) => {
-    clearFilters();
-    setSearchText("");
-  };
-
-  function onCancel() {
-    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: false }));
-  }
-
-  const onModalVisible = () => {
-    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: true }));
-  };
-
   var requestOptions = {
     method: "GET",
     redirect: "follow",
@@ -124,6 +105,25 @@ const Employees = () => {
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   }, []);
+
+  function onCancel() {
+    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: false }));
+  }
+
+  const onModalVisible = () => {
+    dispatch(rdxuploadsactions.changeModalState({ modalEmployee: true }));
+  };
+
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
+  };
 
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
