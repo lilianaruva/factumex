@@ -5,6 +5,8 @@ import { rdxuploadsactions } from "../reducers/upload";
 const { Content } = Layout;
 
 const Login = () => {
+  const [form] = Form.useForm();
+
   //dispatch
   const dispatch = useDispatch();
 
@@ -24,7 +26,7 @@ const Login = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const submitHandler = async () => {
+  const onFinish = () => {
     setLoading(true);
     dispatch(rdxuploadsactions.changeLogState({ userLog: true }));
     message.success("Welcome " + emailRef.current.input.value);
@@ -49,14 +51,18 @@ const Login = () => {
                     name="basic"
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
-                    // onFinish={onFinish}
+                    onFinish={onFinish}
                     // onFinishFailed={onFinishFailed}
                     autoComplete="off"
                   >
                     <Form.Item
                       label="Email"
+                      name="email"
                       rules={[
-                        { required: true, message: "Please input your email!" },
+                        {
+                          required: true,
+                          message: "Please input your username",
+                        },
                       ]}
                     >
                       <Input
@@ -78,6 +84,7 @@ const Login = () => {
 
                     <Form.Item
                       label="Password"
+                      name="password"
                       rules={[
                         {
                           required: true,
@@ -105,7 +112,8 @@ const Login = () => {
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                       <Button
                         type="primary"
-                        onClick={() => submitHandler()}
+                        htmlType="submit"
+                        className="buttonModal"
                         loading={loading}
                       >
                         Sign In
